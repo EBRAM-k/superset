@@ -31,13 +31,13 @@ const metadata = new ChartMetadata({
   category: t('Map'),
   credits: ['https://bl.ocks.org/john-guerra'],
   description: t(
-    "Visualizes how a single metric varies across a country's principal subdivisions (states, provinces, etc) on a choropleth map. Each subdivision's value is elevated when you hover over the corresponding geographic boundary.",
+    "how a single metric varies across a country's principal subdivisions (states, provinces, etc) on a choropleth map. Each subdivision's value is elevated when you hover over the corresponding geographic boundary.",
   ),
   exampleGallery: [
     { url: exampleUsa, urlDark: exampleUsaDark },
     { url: exampleGermany, urlDark: exampleGermanyDark },
   ],
-  name: t('Country Map'),
+  name: t('State Map'),
   tags: [
     t('2D'),
     t('Comparison'),
@@ -56,7 +56,7 @@ const metadata = new ChartMetadata({
   ],
 });
 
-export default class CountryMapChartPlugin extends ChartPlugin {
+export default class StateMapChartPlugin extends ChartPlugin {
   constructor() {
     super({
       loadChart: () => import('./ReactCountryMap'),

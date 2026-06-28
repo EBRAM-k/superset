@@ -127,6 +127,7 @@
     "@superset-ui/legacy-plugin-chart-calendar": "file:./plugins/legacy-plugin-chart-calendar",
     "@superset-ui/legacy-plugin-chart-chord": "file:./plugins/legacy-plugin-chart-chord",
     "@superset-ui/legacy-plugin-chart-country-map": "file:./plugins/legacy-plugin-chart-country-map",
+    "@superset-ui/legacy-plugin-chart-state-map": "file:./plugins/legacy-plugin-chart-state-map",
     "@superset-ui/legacy-plugin-chart-horizon": "file:./plugins/legacy-plugin-chart-horizon",
     "@superset-ui/legacy-plugin-chart-map-box": "file:./plugins/legacy-plugin-chart-map-box",
     "@superset-ui/legacy-plugin-chart-paired-t-test": "file:./plugins/legacy-plugin-chart-paired-t-test",

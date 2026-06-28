@@ -763,7 +763,9 @@ class CalHeatmapViz(BaseViz):
     is_timeseries = True
 
     @deprecated(deprecated_in="3.0")
-    def get_data(self, df: pd.DataFrame) -> VizData:  # pylint: disable=too-many-locals  # noqa: C901
+    def get_data(
+        self, df: pd.DataFrame
+    ) -> VizData:  # pylint: disable=too-many-locals  # noqa: C901
         if df.empty:
             return None
 
@@ -1262,6 +1264,41 @@ class CountryMapViz(BaseViz):
         return df.to_dict(orient="records")
 
 
+class StateMapViz(BaseViz):
+    """A state centric"""
+
+    viz_type = "state_map"
+    verbose_name = _("State Map")
+    is_timeseries = False
+    credits = "From bl.ocks.org By john-guerra"
+
+    def query_obj(self) -> QueryObjectDict:
+        query_obj = super().query_obj()
+        metric = self.form_data.get("metric")
+        entity = self.form_data.get("entity")
+        if not self.form_data.get("select_country"):
+            raise QueryObjectValidationError("Must specify a state")
+        if not metric:
+            raise QueryObjectValidationError("Must specify a metric")
+        if not entity:
+            raise QueryObjectValidationError("Must provide ISO codes")
+        query_obj["metrics"] = [metric]
+        query_obj["groupby"] = [entity]
+        return query_obj
+
+    @deprecated(deprecated_in="3.0")
+    def get_data(self, df: pd.DataFrame) -> VizData:
+        if df.empty:
+            return None
+        cols = get_column_names([self.form_data.get("entity")])  # type: ignore
+        metric = self.metric_labels[0]
+        cols += [metric]
+        ndf = df[cols]
+        df = ndf
+        df.columns = ["country_id", "metric"]
+        return df.to_dict(orient="records")
+
+
 class WorldMapViz(BaseViz):
     """A country centric world map"""
 
@@ -1713,7 +1750,9 @@ class BaseDeckGLViz(BaseViz):
 
     def _setup_metric_label(self) -> None:
         """Setup metric label for the visualization."""
-        self.metric_label: str | None = (  # pylint: disable=attribute-defined-outside-init
+        self.metric_label: (
+            str | None
+        ) = (  # pylint: disable=attribute-defined-outside-init
             utils.get_metric_name(self.metric) if self.metric else None
         )
 
@@ -1864,12 +1903,8 @@ class BaseDeckGLViz(BaseViz):
             self.reverse_latlong(df, key)
 
         if df.get(key) is None:
-            raise NullValueException(
-                _(
-                    "Encountered invalid NULL spatial entry, \
-                                       please consider filtering those out"
-                )
-            )
+            raise NullValueException(_("Encountered invalid NULL spatial entry, \
+                                       please consider filtering those out"))
         return df
 
     @deprecated(deprecated_in="3.0")
@@ -1994,9 +2029,7 @@ class DeckScatterViz(BaseDeckGLViz):
             "radius": (
                 self.fixed_value
                 if self.fixed_value
-                else data.get(self.metric_label)
-                if self.metric_label
-                else None
+                else data.get(self.metric_label) if self.metric_label else None
             ),
             "cat_color": data.get(self.dim) if self.dim else None,
             "position": data.get("spatial"),

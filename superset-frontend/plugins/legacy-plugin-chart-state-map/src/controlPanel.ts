@@ -37,10 +37,10 @@ const config: ControlPanelConfig = {
             name: 'select_country',
             config: {
               type: 'SelectControl',
-              label: t('Country'),
+              label: t('State'),
               default: null,
               choices: countryOptions,
-              description: t('Which country to plot the map for?'),
+              description: t('Which state to plot the map for?'),
               validators: [validateNonEmpty],
             },
           },

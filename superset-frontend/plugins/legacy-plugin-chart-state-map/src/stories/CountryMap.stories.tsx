@@ -25,7 +25,7 @@ import CountryMapChartPlugin, {
 } from '@superset-ui/legacy-plugin-chart-country-map';
 import { withResizableChartDemo } from '@storybook-shared';
 
-new CountryMapChartPlugin().configure({ key: 'country-map' }).register();
+new CountryMapChartPlugin().configure({ key: 'state-map' }).register();
 
 export default {
   title: 'Legacy Chart Plugins/legacy-plugin-chart-country-map',

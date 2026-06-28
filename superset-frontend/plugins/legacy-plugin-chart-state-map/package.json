@@ -1,7 +1,7 @@
 {
-  "name": "@superset-ui/legacy-plugin-chart-country-map",
+  "name": "@superset-ui/legacy-plugin-chart-state-map",
   "version": "0.20.3",
-  "description": "Superset Legacy Chart - Country Map",
+  "description": "Superset Legacy Chart - State Map",
   "main": "lib/index.js",
   "module": "esm/index.js",
   "files": [
