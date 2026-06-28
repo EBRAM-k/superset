@@ -18,7 +18,7 @@
  */
 import { reactify } from '@superset-ui/core';
 import { styled } from '@apache-superset/core/theme';
-import Component from './CountryMap';
+import Component from './StateMap';
 
 // Type-erase the render function to allow flexible prop spreading in the wrapper.
 // The CountryMap render function has typed props, but the wrapper passes props via spread
