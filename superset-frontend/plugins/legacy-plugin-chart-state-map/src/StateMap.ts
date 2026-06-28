@@ -425,14 +425,22 @@ function StateMap(element: HTMLElement, props: CountryMapProps) {
     highlightSelectedRegion();
   }
 
-  const map = maps[country];
+  function getCountryStateFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('state');
+  }
+
+  const countryStateKey = getCountryStateFromUrl() || country;
+
+  const map = maps[countryStateKey];
   if (map) {
     drawMap(map);
   } else {
-    const url = (countries as Record<string, string>)[country];
+    const url = (countries as Record<string, string>)[countryStateKey];
     if (!url) {
       const countryName =
-        countryOptions.find(x => x[0] === country)?.[1] || country;
+        countryOptions.find(x => x[0] === countryStateKey)?.[1] ||
+        countryStateKey;
       d3.select(element).html(
         `<div class="alert alert-danger">No map data available for ${escapeHtml(countryName)}</div>`,
       );
@@ -441,12 +449,13 @@ function StateMap(element: HTMLElement, props: CountryMapProps) {
     d3.json(url, (error: unknown, mapData: GeoData) => {
       if (error) {
         const countryName =
-          countryOptions.find(x => x[0] === country)?.[1] || country;
+          countryOptions.find(x => x[0] === countryStateKey)?.[1] ||
+          countryStateKey;
         d3.select(element).html(
           `<div class="alert alert-danger">Could not load map data for ${escapeHtml(countryName)}</div>`,
         );
       } else {
-        maps[country] = mapData;
+        maps[countryStateKey] = mapData;
         drawMap(mapData);
       }
     });
