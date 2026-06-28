@@ -90,7 +90,7 @@ const zoomStates = new WeakMap<
   { scale: number; translate: [number, number] }
 >();
 
-function CountryMap(element: HTMLElement, props: CountryMapProps) {
+function StateMap(element: HTMLElement, props: CountryMapProps) {
   const {
     data,
     width,
@@ -453,6 +453,6 @@ function CountryMap(element: HTMLElement, props: CountryMapProps) {
   }
 }
 
-CountryMap.displayName = 'CountryMap';
+StateMap.displayName = 'StateMap';
 
-export default CountryMap;
+export default StateMap;
