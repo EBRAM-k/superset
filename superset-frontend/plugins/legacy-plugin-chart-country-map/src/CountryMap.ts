@@ -59,6 +59,7 @@ interface CountryMapProps {
   width: number;
   height: number;
   country: string;
+  targetDashboard: string;
   linearColorScheme: string;
   numberFormat: string;
   colorScheme: string;
@@ -73,6 +74,7 @@ function CountryMap(element: HTMLElement, props: CountryMapProps) {
     width,
     height,
     country,
+    targetDashboard,
     linearColorScheme,
     numberFormat,
     colorScheme,
@@ -148,6 +150,10 @@ function CountryMap(element: HTMLElement, props: CountryMapProps) {
         'transform',
         `translate(${halfWidth},${halfHeight})scale(${k})translate(${-x},${-y})`,
       );
+
+    const state = d.properties.NAME_1;
+    const url = `/superset/dashboard/${targetDashboard}/?state=${encodeURIComponent(state)}`;
+    window.open(url, '_blank', 'noopener');
   };
 
   backgroundRect.on('click', clicked);

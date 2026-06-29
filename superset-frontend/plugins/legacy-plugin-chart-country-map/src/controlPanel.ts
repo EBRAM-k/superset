@@ -69,6 +69,18 @@ const config: ControlPanelConfig = {
             },
           },
         ],
+        [
+          {
+            name: 'target_dashboard',
+            config: {
+              type: 'TextControl',
+              label: 'Target dashboard',
+              default: '',
+              renderTrigger: true,
+              freeForm: true,
+            },
+          },
+        ],
         ['linear_color_scheme'],
       ],
     },

@@ -51,11 +51,13 @@ function generateData(geojson: JsonObject) {
 
 export const BasicCountryMapStory = ({
   country,
+  targetDashboard,
   colorSchema,
   width,
   height,
 }: {
   country: string;
+  targetDashboard: string;
   colorSchema: string;
   width: number;
   height: number;
@@ -99,6 +101,7 @@ export const BasicCountryMapStory = ({
         linear_color_scheme: colorSchema,
         number_format: '.3s',
         select_country: country,
+        target_dashboard: targetDashboard
       }}
     />
   );
@@ -106,12 +109,18 @@ export const BasicCountryMapStory = ({
 
 BasicCountryMapStory.args = {
   country: 'finland',
+  targetDashboard: '',
   colorSchema: 'schemeOranges',
 };
 BasicCountryMapStory.argTypes = {
   country: {
     control: 'select',
     options: Object.keys(countries),
+  },
+  targetDashboard: {
+    control: 'text',
+    description: 'Target dashboard slug or id',
+    defaultValue: '',
   },
   colorSchema: {
     control: 'select',

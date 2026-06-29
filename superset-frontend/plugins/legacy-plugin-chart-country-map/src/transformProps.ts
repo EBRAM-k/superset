@@ -24,6 +24,7 @@ export default function transformProps(chartProps: ChartProps) {
     linearColorScheme,
     numberFormat,
     selectCountry,
+    targetDashboard,
     colorScheme,
     sliceId,
   } = formData;
@@ -33,6 +34,7 @@ export default function transformProps(chartProps: ChartProps) {
     height,
     data: queriesData[0].data,
     country: selectCountry ? String(selectCountry).toLowerCase() : null,
+    targetDashboard: targetDashboard,
     linearColorScheme,
     numberFormat,
     colorScheme,
