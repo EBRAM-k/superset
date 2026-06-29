@@ -125,35 +125,37 @@ function CountryMap(element: HTMLElement, props: CountryMapProps) {
   let centered: GeoFeature | null;
 
   const clicked = function clicked(d: GeoFeature) {
-    const hasCenter = d && centered !== d;
-    let x: number;
-    let y: number;
-    let k: number;
-    const halfWidth = width / 2;
-    const halfHeight = height / 2;
+    // const hasCenter = d && centered !== d;
+    // let x: number;
+    // let y: number;
+    // let k: number;
+    // const halfWidth = width / 2;
+    // const halfHeight = height / 2;
 
-    if (hasCenter) {
-      const centroid = path.centroid(d);
-      [x, y] = centroid;
-      k = 4;
-      centered = d;
-    } else {
-      x = halfWidth;
-      y = halfHeight;
-      k = 1;
-      centered = null;
+    // if (hasCenter) {
+    //   const centroid = path.centroid(d);
+    //   [x, y] = centroid;
+    //   k = 4;
+    //   centered = d;
+    // } else {
+    //   x = halfWidth;
+    //   y = halfHeight;
+    //   k = 1;
+    //   centered = null;
+    // }
+
+    // g.transition()
+    //   .duration(750)
+    //   .attr(
+    //     'transform',
+    //     `translate(${halfWidth},${halfHeight})scale(${k})translate(${-x},${-y})`,
+    //   );
+
+    if (d) {
+      const state = d.properties.NAME_1;
+      const url = `/superset/dashboard/${targetDashboard}/?state=${encodeURIComponent(state)}`;
+      window.open(url, '_blank', 'noopener');
     }
-
-    g.transition()
-      .duration(750)
-      .attr(
-        'transform',
-        `translate(${halfWidth},${halfHeight})scale(${k})translate(${-x},${-y})`,
-      );
-
-    const state = d.properties.NAME_1;
-    const url = `/superset/dashboard/${targetDashboard}/?state=${encodeURIComponent(state)}`;
-    window.open(url, '_blank', 'noopener');
   };
 
   backgroundRect.on('click', clicked);
