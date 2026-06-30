@@ -152,8 +152,10 @@ function CountryMap(element: HTMLElement, props: CountryMapProps) {
     //   );
 
     if (d) {
-      const state = d.properties.NAME_1;
-      const url = `/superset/dashboard/${targetDashboard}/?state=${encodeURIComponent(state)}`;
+      const stateFilterName = d.properties.NAME_2;
+      if (!stateFilterName) return;
+
+      const url = `/superset/dashboard/${targetDashboard}/?state=${encodeURIComponent(stateFilterName)}`;
       window.open(url, '_blank', 'noopener');
     }
   };
