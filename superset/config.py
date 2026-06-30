@@ -386,7 +386,7 @@ AUTH_TYPE = AUTH_DB
 # AUTH_ROLE_ADMIN = 'Admin'
 
 # Uncomment to setup Public role name, no authentication needed
-# AUTH_ROLE_PUBLIC = 'Public'
+AUTH_ROLE_PUBLIC = "Public"
 
 # Will allow user self registration
 # AUTH_USER_REGISTRATION = True
@@ -409,6 +409,7 @@ AUTH_TYPE = AUTH_DB
 # This is useful if one wants to enable anonymous users to view
 # dashboards. Explicit grant on specific datasets is still required.
 PUBLIC_ROLE_LIKE: str | None = None
+PUBLIC_ROLE_LIKE = "Public"
 
 # ---------------------------------------------------
 # Babel config for translations
@@ -523,7 +524,7 @@ CURRENCIES = ["USD", "EUR", "GBP", "INR", "MXN", "JPY", "CNY"]
 # Feature flags control optional functionality in Superset. They can be set in
 # superset_config.py to override the defaults below.
 #
-# Example: FEATURE_FLAGS = { 'ALERT_REPORTS': True }
+Example: FEATURE_FLAGS = {"DASHBOARD_RBAC": True}
 #
 # Each flag is annotated with:
 #   @lifecycle: development | testing | stable | deprecated
